@@ -25,13 +25,22 @@ const CheckoutForm = () => {
       if (error) {
         console.log(['error'], error);
       } else {
-        console.log(['PaymentMethod'], paymentMethod);
-        let response = fetch('http://localhost/api/acept_payment',
-          {'payment_method': paymentMethod}).then((response) => {
-            console.log(response)
-          }).catch((error) => {
-            console.log('[error]', error)
-          });
+        console.log('[PaymentMethod]', paymentMethod);
+        let promise = fetch('https://localhost:5000/api/acept_payment', {
+          method: 'post',
+          body: JSON.stringify({payment_method: paymentMethod}),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then((response) => 
+          response.json()
+        ).then((data) => {
+          console.log(data)
+        }).catch((error) => {
+          console.log('[error]', error)
+        });
+
+        console.log(promise)
       }
 
     }
