@@ -29,7 +29,6 @@ const  CardSection = () => {
     }
 
     const handleOnChanage = (event) => {
-        console.log(event)
         setState({...state, errorMessage: ''})
         if (event.error) {
             setState({error: true, errorMessage:event.error.message})
